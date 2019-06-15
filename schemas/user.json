@@ -1,0 +1,20 @@
+{
+  "companyName": "The North",
+  "firstName": "Ned",
+  "lastName": "Stark",
+  "address": {
+    "street": "1 Winterfell",
+    "city": "Winterfell",
+    "state": "The North",
+    "zip": "000001",
+    "country": "Westeros"
+  },
+  "email": "ned@winteriscoming.com",
+  "phone": "4055468755",
+  "password": "password",
+  "userType": "Employee",
+  "dayRate": "500",
+  "startDate": "5-29-2019",
+  "companyJobs": [{ "admin": "500" }],
+  "userJobs": ["jobID"]
+}

@@ -1,0 +1,9 @@
+{
+  "clientId": "clientId",
+  "projectId": "projectid",
+  "userId": "userId",
+  "job": "Job ID",
+  "date": "DATE",
+  "timeworked": ".75",
+  "expenses": [{ "expense": "value", "note": "note" }]
+}

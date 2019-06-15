@@ -1,0 +1,41 @@
+Database will be MongoDB. 
+
+There will be __ collections:
+    - companies ()
+    - employees
+    - clients 
+    - billedtime
+
+
+
+A user will sign up for an account as company. 
+
+each company will be able to create new clients.
+
+clients may belong to different companies 
+
+users are created by the companies, each time a company creates a user, an email is sent to the user, from which he creates his user account.
+
+Routes: 
+
+
+POST: auth.js
+POST: employees.js
+PUT: employees.js
+DELETE: employees.js
+GET: employees.js
+
+POST: clients.js
+PUT: clients.js
+DELETE: clients.js
+GET: clients.js
+
+POST: users.js
+PUT: users.js
+DELETE: users.js
+GET: users.js
+
+POST: billedtime.js
+PUT: billedtime.js
+DELETE: billedtime.js
+GET: billedtime.js

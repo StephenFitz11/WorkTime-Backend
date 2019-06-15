@@ -1,0 +1,14 @@
+{
+  "clientCompanyName": "Tywins War",
+  "aliasName": "Killthewolf",
+  "contact": {
+    "firstName": "Jeff",
+    "lastName": "Change",
+    "phone": "258-587-5694",
+    "email": "this@gmail.com"
+  },
+  "projects": {
+    "projectName": "War of the 5 kings",
+    "projectBillrate": 2000
+  }
+}

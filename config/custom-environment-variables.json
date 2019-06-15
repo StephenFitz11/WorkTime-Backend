@@ -1,0 +1,7 @@
+{
+  "jwtPrivateKey": "worktime_jwtPrivateKey",
+  "smtpUserName": "smtpUserName",
+  "smtpPass": "smtpPass",
+  "clientId": "clientId",
+  "clientSecret": "clientSecret"
+}

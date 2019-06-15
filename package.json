@@ -1,0 +1,26 @@
+{
+  "name": "worktime",
+  "version": "1.0.0",
+  "description": "A time billing application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrpyt": "^2.0.0",
+    "bcrypt": "^3.0.6",
+    "config": "^3.1.0",
+    "express": "^4.17.0",
+    "express-async-errors": "^3.1.1",
+    "express-validator": "^5.3.1",
+    "generate-password": "^1.4.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.5.10",
+    "nodemailer": "^6.2.1",
+    "winston": "^3.2.1"
+  }
+}
