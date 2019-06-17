@@ -1,5 +1,6 @@
 const express = require("express");
 const config = require("config");
+const cors = require("cors");
 require("express-async-errors");
 
 const connectDB = require("./config/db");
@@ -17,6 +18,7 @@ if (!config.get("jwtPrivateKey")) {
 connectDB();
 
 // Init Middleware
+app.use(cors());
 app.use(express.json({ extended: false }));
 
 // Routes

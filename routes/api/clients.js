@@ -6,21 +6,40 @@ const company = require("../../middleware/company");
 
 const Client = require("../../models/Clients");
 
+// Get all clients of the user
 router.get("/", auth, async (req, res) => {
   const clients = await Client.find({ parentCompany: req.user._id });
   res.send(clients);
 });
 
+// Get a client by ID
+router.get("/:id", [auth, company], async (req, res) => {
+  const client = await Client.findById(req.params.id);
+  res.send(client);
+});
+
 router.post("/", [auth, company], async (req, res) => {
-  const { clientCompanyName, aliasName, contact, address, projects } = req.body;
+  const {
+    clientCompanyName,
+    email,
+    street,
+    city,
+    state,
+    zip,
+    billRate,
+    description
+  } = req.body;
 
   const client = new Client({
     clientCompanyName,
-    aliasName,
+    email,
     parentCompany: req.user._id,
-    contact,
-    address,
-    projects
+    street,
+    city,
+    state,
+    zip,
+    billRate,
+    description
   });
 
   await client.save();

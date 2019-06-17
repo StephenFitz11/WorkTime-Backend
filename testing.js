@@ -1,3 +1,16 @@
-const mongoose = require("mongoose");
+const data = [
+  {
+    name: "bill",
+    alias: "william,"
+  },
+  {
+    name: "james",
+    alias: "jim"
+  }
+];
 
-console.log(mongoose.Types.ObjectId.isValid("5ceafb1cab86fc48b03ss7e206"));
+data.map(item => {
+  item["key"] = 1;
+});
+
+console.log(data);
