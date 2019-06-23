@@ -67,6 +67,12 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  clients: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "client"
+    }
+  ],
   parentCompany: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user"
@@ -82,24 +88,6 @@ const userSchema = new mongoose.Schema({
       }
       return false;
     }
-  },
-  companyJobs: [
-    new mongoose.Schema({
-      jobName: {
-        type: String,
-        minlength: 8,
-        maxlength: 255
-      },
-      jobBillRate: {
-        type: Number,
-        min: 0,
-        max: 50000
-      }
-    })
-  ],
-  userJobs: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user"
   }
 });
 
@@ -107,7 +95,12 @@ const userSchema = new mongoose.Schema({
 
 userSchema.methods.generateAuthToken = function() {
   const token = jwt.sign(
-    { _id: this._id, userType: this.userType, name: this.firstName },
+    {
+      _id: this._id,
+      userType: this.userType,
+      parent: this.parentCompany,
+      name: this.firstName
+    },
     config.get("jwtPrivateKey"),
     { expiresIn: 36000000 }
   );

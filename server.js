@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.json({ extended: false }));
 
 // Routes
-app.use("/api/billedtime", require("./routes/api/billedtime"));
+app.use("/api/time", require("./routes/api/time"));
 app.use("/api/clients", require("./routes/api/clients"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/employees", require("./routes/api/employees"));

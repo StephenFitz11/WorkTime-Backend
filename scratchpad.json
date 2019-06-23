@@ -1,7 +1,6 @@
 {
-  "clientId": "5cffc694aa12ea4298585c0f",
-  "project": {
-    "projectName": "Diligence",
-    "projectBillRate": 500
-  }
+  "client": "5d0af97fc35693797cca4347",
+
+  "timeworked": ".50", 
+  "expenses": [{"expense": "copies", "amount": "5"}]
 }

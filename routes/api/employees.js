@@ -10,6 +10,17 @@ const auth = require("../../middleware/auth");
 
 const User = require("../../models/Users");
 
+router.get("/:id", [auth, company], async (req, res) => {
+  try {
+    const employee = await User.findById(req.params.id || req.user._id)
+      .populate("clients", ["clientCompanyName"])
+      .select("-password");
+    res.send(employee);
+  } catch (ex) {
+    res.send(ex.message);
+  }
+});
+
 router.get("/", [auth, company], async (req, res) => {
   results = await User.find({ parentCompany: req.user._id }).select(
     "-password"
@@ -44,14 +55,19 @@ router.post("/", checkArray, [auth, company], async (req, res) => {
     phone,
     email,
     dayRate,
+    description,
     clients
   } = req.body;
 
-  const password = generator.generate({
-    length: 10,
-    numbers: true,
-    uppercase: true
-  });
+  // TODO: DELETE BEFORE PRODUCTION
+  const password = "password";
+
+  // TODO: ENABLE BEFORE PRODUCTION
+  // const password = generator.generate({
+  //   length: 10,
+  //   numbers: true,
+  //   uppercase: true
+  // });
 
   console.log(password);
 
@@ -63,6 +79,7 @@ router.post("/", checkArray, [auth, company], async (req, res) => {
     phone,
     email,
     password,
+    description,
     dayRate,
     startDate: Date.now(),
     userType: "Employee",

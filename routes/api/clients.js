@@ -5,9 +5,20 @@ const auth = require("../../middleware/auth");
 const company = require("../../middleware/company");
 
 const Client = require("../../models/Clients");
+const User = require("../../models/Users");
 
 // Get all clients of the user
 router.get("/", auth, async (req, res) => {
+  let empClients = req.query.empClients;
+
+  if (empClients) {
+    const employee = await User.findById(req.user._id)
+      .select("clients")
+      .populate("clients", ["clientCompanyName"]);
+
+    return res.send(employee);
+  }
+
   const clients = await Client.find({ parentCompany: req.user._id });
   res.send(clients);
 });
@@ -80,4 +91,15 @@ router.put("/addproject", auth, async (req, res) => {
   res.send(client.projects);
 });
 
+router.delete("/:id", [auth, company], async (req, res) => {
+  try {
+    const client = await Client.findOneAndDelete({ _id: req.params.id });
+    if (!client) {
+      return res.status(400).send("No client found with that id");
+    }
+    res.send(client);
+  } catch (ex) {
+    res.send(ex.message);
+  }
+});
 module.exports = router;
