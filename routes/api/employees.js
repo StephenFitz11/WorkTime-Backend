@@ -111,28 +111,40 @@ router.post("/", checkArray, [auth, company], async (req, res) => {
   );
 });
 
-router.put("/addClient", [auth, company], async (req, res) => {
-  const { employeeId, clientId } = req.body;
+router.put("/", [auth, company], async (req, res) => {
+  const {
+    empId,
+    companyName,
+    firstName,
+    lastName,
+    phone,
+    email,
+    dayRate,
+    description,
+    clients
+  } = req.body;
 
-  if (
-    !mongoose.Types.ObjectId.isValid(employeeId) ||
-    !mongoose.Types.ObjectId.isValid(clientId)
-  ) {
+  if (!mongoose.Types.ObjectId.isValid(empId)) {
     return res.status(400).send("Object IDs are not valid");
   }
 
-  const user = await User.findById({ _id: employeeId }).select("-password");
+  const user = await User.findOneAndUpdate(
+    { _id: empId },
+    {
+      companyName,
+      firstName,
+      lastName,
+      phone,
+      email,
+      dayRate,
+      description,
+      clients
+    }
+  );
 
   if (!user) {
     return res.status(404).send("Cannot find user by that ID");
   }
-
-  if (user.clients.includes(clientId)) {
-    return res.status(400).send("This employee already has this client added.");
-  }
-
-  user.clients.push(clientId);
-  await user.save();
 
   res.send(user);
 });

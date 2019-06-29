@@ -58,25 +58,40 @@ router.post("/", [auth, company], async (req, res) => {
   res.send(client);
 });
 
-router.put("/", auth, async (req, res) => {
-  const { clientId, clientCompanyName, aliasName, contact, address } = req.body;
+router.put("/", [auth, company], async (req, res) => {
+  const {
+    clientId,
+    clientCompanyName,
+    email,
+    billRate,
+    street,
+    state,
+    city,
+    zip,
+    description
+  } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(clientId)) {
     return res.status(400).send("Object IDs are not valid");
   }
 
-  const client = await Client.findById(clientId);
+  const client = await Client.findOneAndUpdate(
+    { _id: clientId },
+    {
+      clientCompanyName,
+      email,
+      billRate,
+      street,
+      state,
+      city,
+      zip,
+      description
+    }
+  );
 
   if (!client) {
-    return res.status(404).send("Invalid token for operation");
+    return res.status(404).send("Invalid client id for operation");
   }
-
-  client.clientCompanyName = clientCompanyName;
-  client.aliasName = aliasName;
-  client.contact = contact;
-  client.address = address;
-
-  await client.save();
 
   res.send(client);
 });
